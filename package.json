@@ -1,0 +1,19 @@
+{
+  "name": "tic-tac-toe-gobbler-ai",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe Gobbler AI",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tic-tac-toe-gobbler"
+  ],
+  "author": "shubhamwaghe",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "core-js": "^3.21.0"
+  }
+}
