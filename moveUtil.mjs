@@ -1,4 +1,6 @@
-/* Retuns List of Valid Moves - Follows The Game Notation */
+import { assertMovableFromPiecePosition, assertMovableToPiecePosition, 
+    assertMovableToSkipSquare, assertValidCurrentPlayer } from './validMoveAssertUtil.mjs';
+
 function getValidMoves(currentState, playerToMove) {
 
     const PIECES_LIST = {
@@ -17,6 +19,7 @@ function getNextStateOnMoveExecution(currentState, gameMove) {
     var parsedGameMove = getParsedGameMove(gameMove);
 
     // TODO: Compute the actual execution logic of `parsedGameMove` on `currentState`
+    // Use isValidMove from validMoveAssertUtil
 
     return {
         "move": "GAME START",
