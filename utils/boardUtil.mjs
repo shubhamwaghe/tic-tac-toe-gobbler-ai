@@ -1,15 +1,16 @@
 import { getParsedPiece } from './pieceUtil.mjs'
 import { getPlayerGround, getColorFromGround } from './playerUtil.mjs'
 
+// Winning Move : Blue - Medium : BLUE_GROUND -> A1
 function getBoardInitialState() {
     return {
         "move": "GAME START",
         "squares": {
-            "A3": ["BL"], "B3": [],   "C3": ["BM", "RL"],
-            "A2": ["RM"], "B2": ["RM"], "C2": [],
-            "A1": ["BL"], "B1": [],     "C1": [], 
-            "RED_GROUND":  ["RS", "RL", "RS"],
-            "BLUE_GROUND": ["BS", "BM", "BS"]
+            "A3": ["BL"], "B3": ["RL"],   "C3": [],
+            "A2": [], "B2": ["BL"], "C2": [],
+            "A1": [], "B1": [],     "C1": ["RL"],
+            "RED_GROUND":  ["RS", "RM", "RS", "RM"],
+            "BLUE_GROUND": ["BS", "BM", "BS", "BM"]
             // "RED_GROUND":  ["RS", "RM", "RL", "RS", "RM", "RL"],
             // "BLUE_GROUND": ["BS", "BM", "BL", "BS", "BM", "BL"]
         }
