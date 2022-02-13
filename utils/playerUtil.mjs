@@ -30,4 +30,5 @@ function getColorFromGround(playerGround) {
             return null; // This cannot happen
     }
 }
+
 export { togglePlayerToMove, getPlayerGround, getColorFromGround }

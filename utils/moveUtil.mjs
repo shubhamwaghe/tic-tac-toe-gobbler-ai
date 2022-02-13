@@ -79,19 +79,19 @@ function getSampleWinPosition() {
 /* Returns the boardState after playing the gameMove.*/
 function executeMove(currentState, gameMove) {
     var parsedGameMove = getParsedGameMove(gameMove);
-    var playerToMove = parsedGameMove["color"]
+    var playerToMove = parsedGameMove["color"];
     // Add Piece to Board
-    var toBoardSquare = parsedGameMove["to"]
-    var piece = getPieceFromParsedMove(parsedGameMove)
-    var currentState = addPieceToTopOnBoardSquare(currentState, toBoardSquare, piece)
+    var toBoardSquare = parsedGameMove["to"];
+    var piece = getPieceFromParsedMove(parsedGameMove);
+    var currentState = addPieceToTopOnBoardSquare(currentState, toBoardSquare, piece);
     // Remove Played Piece   
     if (parsedGameMove["from"].includes('GROUND')) {
-        currentState = removePieceFromPlayerGround(currentState, playerToMove, piece)
+        currentState = removePieceFromPlayerGround(currentState, playerToMove, piece);
     } else {
         var fromBoardSquare = parsedGameMove["from"]
-        currentState = removeTopPieceFromBoardSquare(currentState, fromBoardSquare)
+        currentState = removeTopPieceFromBoardSquare(currentState, fromBoardSquare);
     }
-    return currentState
+    return currentState;
 }
 
 export {

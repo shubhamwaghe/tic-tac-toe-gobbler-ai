@@ -24,7 +24,7 @@ function getPieceSize(piece) {
         case "S":
             return "SMALL";
         case "M":
-            return "MEIDUM";
+            return "MEDIUM";
         case "L":
             return "LARGE";
         default:
