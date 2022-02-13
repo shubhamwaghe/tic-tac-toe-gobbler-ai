@@ -6,7 +6,7 @@ import { getAllValidMoves } from './helpers/validMovesHelper.mjs'
 import { getBoardInitialState, deepCopyBoard, addPieceToTopOnBoardSquare, removeTopPieceFromBoardSquare } from './utils/boardUtil.mjs'
 import { generateGameMove, getParsedGameMove, executeMove } from './utils/moveUtil.mjs'
 import { getPieceFromParsedMove } from './utils/pieceUtil.mjs'
-import { miniMax } from './helpers/miniMaxHelper.mjs'
+import { getNextBestMove } from './helpers/miniMaxHelper.mjs'
 
 function runMainSimulation() {
     /* Game State Initialisation */
@@ -17,7 +17,7 @@ function runMainSimulation() {
     /* Assumption : Blue Plays First */
     var playerToMove = "B";
     var currentState = gameHistory[stepNumber];
-    console.log(miniMax(currentState, playerToMove))
+    console.log(getNextBestMove(currentState, playerToMove))
 
     // for (var gameMove in validMoves) {
     //     var nextState = getNextStateOnMoveExecution(currentState, gameMove);

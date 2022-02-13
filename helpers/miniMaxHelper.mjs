@@ -13,7 +13,7 @@ function miniMaxParameters() {
     }
 }
 
-function miniMax(board, player, depth = 0) {
+function getNextBestMove(board, player, depth = 0) {
     var depthLimit = miniMaxParameters()["depthLimit"]
     if (depth >= depthLimit)
         return heuristic(board);
@@ -30,7 +30,7 @@ function maximizer(board, depth, player) {
     // -INFINITY because first move will always be more
     for (let i = 0; i < movesList.length; i++) {
       let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-      let moveScore = miniMax(movedBoard, 'R', depth + 1);
+      let moveScore = getNextBestMove(movedBoard, 'R', depth + 1);
       if (moveScore >= bestMoveScore) {
           bestMove = movesList[i];
           bestMoveScore = moveScore;
@@ -50,7 +50,7 @@ function minimizer(board, depth, player) {
     // +INFINITY because the first score will always be less
     for (let i = 0; i < movesList.length; i++) {
         let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-        let moveScore = miniMax(movedBoard, 'B', depth + 1);
+        let moveScore = getNextBestMove(movedBoard, 'B', depth + 1);
         if (moveScore <= bestMoveScore) {
             bestMove = movesList[i];
             bestMoveScore = moveScore;
@@ -76,4 +76,4 @@ function heuristic(currentState) {
     }
 }
 
-export { miniMax }
+export { getNextBestMove }
