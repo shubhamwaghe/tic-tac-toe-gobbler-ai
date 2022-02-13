@@ -7,14 +7,14 @@ function miniMaxParameters() {
     return {
         "depthLimit": 3,
         "blueWinPoints": 100,
-        "RedWinPoints": -100,
+        "redWinPoints": -100,
         "drawPoints": 0,
         "defaultPoints": 0
     }
 }
 
 function getNextBestMove(board, player, depth = 0) {
-    var depthLimit = miniMaxParameters()["depthLimit"]
+    var depthLimit = miniMaxParameters()["depthLimit"];
     if (depth >= depthLimit)
         return heuristic(board);
     if (player === 'B')
@@ -39,7 +39,7 @@ function maximizer(board, depth, player) {
     if (depth === 0) {
       var bestMoveStore = bestMove; 
     }
-    return bestMove
+    return bestMove;
 }
 
 
@@ -59,20 +59,20 @@ function minimizer(board, depth, player) {
     if (depth === 0) {
         var bestMoveStore = bestMove;
     }
-    return bestMoveScore
+    return bestMoveScore;
 }
 
 function heuristic(currentState) {
     var result = checkResult(currentState["squares"])
     switch (result) {
         case "B":
-            return miniMaxParameters()["blueWinPoints"]
+            return miniMaxParameters()["blueWinPoints"];
         case "R":
-            return miniMaxParameters()["redWinPoints"]
+            return miniMaxParameters()["redWinPoints"];
         case "D":
-            return miniMaxParameters()["drawPoints"]
+            return miniMaxParameters()["drawPoints"];
         default:
-            return miniMaxParameters()["defaultPoints"]
+            return miniMaxParameters()["defaultPoints"];
     }
 }
 

@@ -52,17 +52,17 @@ function getAdjacentBoardSquares(boardSquare) {
 /* returns a copy of the board without changing the actual board */
 function deepCopyBoard(board) {
     const cloneBoard = JSON.parse(JSON.stringify(board));
-    return cloneBoard
+    return cloneBoard;
 }
 
 /* returns a list of pieces on given board square. */
 function getPiecesOnBoardSquare(board, boardSquare) {
-    return board["squares"][boardSquare]
+    return board["squares"][boardSquare];
 }
 
 /* returns piece on top for a given board square */
 function getTopPiece(board, boardSquare) {
-    return getPiecesOnBoardSquare(board, boardSquare).at(-1)
+    return getPiecesOnBoardSquare(board, boardSquare).at(-1);
 }
 
 /* 
@@ -70,42 +70,42 @@ function getTopPiece(board, boardSquare) {
      on top belong to player to move
 */
 function getSquaresWithPlayerPiecesOnTop(board, playerToMove) {
-    var squaresWithPlayerPiecesOnTop = []
+    var squaresWithPlayerPiecesOnTop = [];
     for (var boardSquare of getBoardSquaresList()) {
-        var piecesOnBoardSquare = getPiecesOnBoardSquare(board, boardSquare)
+        var piecesOnBoardSquare = getPiecesOnBoardSquare(board, boardSquare);
         if ((piecesOnBoardSquare.length != 0) &&
             (topPieceBelongsToPlayer(piecesOnBoardSquare, playerToMove))) {
-            squaresWithPlayerPiecesOnTop.push(boardSquare)
+            squaresWithPlayerPiecesOnTop.push(boardSquare);
         }
     }
-    return squaresWithPlayerPiecesOnTop
+    return squaresWithPlayerPiecesOnTop;
 }
 
 /* Returns Updated Current State */
 function removeTopPieceFromBoardSquare(board, boardSquare) {
-    board["squares"][boardSquare].pop()
-    return board
+    board["squares"][boardSquare].pop();
+    return board;
 }
 
 /* Returns Updated Current State */
 function addPieceToTopOnBoardSquare(board, boardSquare, piece) {
-    board["squares"][boardSquare].push(piece)
-    return board
+    board["squares"][boardSquare].push(piece);
+    return board;
 }
 
 function removePieceFromPlayerGround(board, playerToMove, piece) {
-    var playerGround = board["squares"][getPlayerGround(playerToMove)]
+    var playerGround = board["squares"][getPlayerGround(playerToMove)];
     var index = playerGround.indexOf(piece);
     if (index !== -1) {
         playerGround.splice(index, 1);
     }
-    return board
+    return board;
 }
 
 function topPieceBelongsToPlayer(piecesOnBoardSquare, playerToMove) {
     return getParsedPiece(piecesOnBoardSquare.at(-1))["pieceColor"] === playerToMove ?
         true :
-        false
+        false;
 }
 
 export {
