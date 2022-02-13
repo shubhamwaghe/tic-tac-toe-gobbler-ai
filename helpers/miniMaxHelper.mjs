@@ -45,8 +45,9 @@ function maximizer(board, player, { depth, gameStateHashMap, gameStatsMap }) {
     // -INFINITY because first move will always be more
     for (let i = 0; i < movesList.length; i++) {
       let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-      let bestMove = getNextBestMove(movedBoard, 'R', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
-      let moveScore = bestMove.score;
+      var bestMoveData = getNextBestMove(movedBoard, 'R', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
+      // console.log(bestMoveData);
+      var moveScore = bestMoveData.score;
       if (moveScore >= bestMoveScore) {
           bestMove = movesList[i];
           bestMoveScore = moveScore;
@@ -69,8 +70,9 @@ function minimizer(board, player, { depth, gameStateHashMap, gameStatsMap }) {
     // +INFINITY because the first score will always be less
     for (let i = 0; i < movesList.length; i++) {
         let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-        let bestMove = getNextBestMove(movedBoard, 'B', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
-        let moveScore = bestMove.score;
+        var bestMoveData = getNextBestMove(movedBoard, 'B', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
+        // console.log(bestMoveData);
+        var moveScore = bestMoveData.score;
         if (moveScore <= bestMoveScore) {
             bestMove = movesList[i];
             bestMoveScore = moveScore;
