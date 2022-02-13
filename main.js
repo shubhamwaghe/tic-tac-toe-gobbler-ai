@@ -35,7 +35,7 @@ function runMainSimulation() {
         gameStatsMap: gameStatsMap,  
     }));
 
-    console.log(chalk.green("Game States Evaluated: ", Object.keys(gameStateHashMap).length));
+    console.log(chalk.green("Unique Game States Evaluated: ", Object.keys(gameStateHashMap).length));
     console.log("Game Stats: ", gameStatsMap);
 
     // console.log("Game State Hashes: ", gameStateHashMap);
