@@ -49,23 +49,6 @@ function getAdjacentBoardSquares(boardSquare) {
 
 /* returns a copy of the board without changing the actual board */
 function deepCopyBoard(board) {
-    // let copyBoard = {};
-    // copyBoard = {
-    //     "move": board["move"],
-    //     "squares": {
-    //         "A3": board["squares"]["A3"],
-    //         "B3": board["squares"]["B3"],
-    //         "C3": board["squares"]["C3"],
-    //         "A2": board["squares"]["A2"],
-    //         "B2": board["squares"]["B2"],
-    //         "C2": board["squares"]["C2"],
-    //         "A1": board["squares"]["A1"],
-    //         "B1": board["squares"]["B1"],
-    //         "C1": board["squares"]["C1"],
-    //         "RED_GROUND": board["squares"]["RED_GROUND"],
-    //         "BLUE_GROUND": board["squares"]["BLUE_GROUND"]
-    //     }
-    // }
     const cloneBoard = JSON.parse(JSON.stringify(board));
     return cloneBoard
 }

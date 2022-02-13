@@ -15,9 +15,6 @@ function miniMaxParameters() {
 
 function miniMax(board, player, depth = 0) {
     var depthLimit = miniMaxParameters()["depthLimit"]
-    // console.log("--------------------")
-    // console.log("board", board, "player", player, "depth", depth, "depthLimit", depthLimit)
-    // console.log("--------------------")
     if (depth >= depthLimit)
         return heuristic(board);
     if (player === 'B')
@@ -27,9 +24,6 @@ function miniMax(board, player, depth = 0) {
 }
 
 function maximizer(board, depth, player) {
-    // console.log("***********")
-    // console.log("maximizer")
-    // console.log("***********")
     let movesList = getAllValidMoves(board, player);
     let bestMove;
     var bestMoveScore = Number.NEGATIVE_INFINITY;

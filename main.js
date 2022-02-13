@@ -17,23 +17,7 @@ function runMainSimulation() {
     /* Assumption : Blue Plays First */
     var playerToMove = "B";
     var currentState = gameHistory[stepNumber];
-    var validMoves = getAllValidMoves(currentState, playerToMove);
-    // console.log(gameHistory.at(-1))
-    // console.log(validMoves)
-    // console.log(checkResult(currentState["squares"]))
-    // console.log(deepCopyBoard(currentState))
-    // console.log(currentState)
     console.log(miniMax(currentState, playerToMove))
-    // console.log(executeMove(currentState, "B:S-OO-A1"))
-    // console.log(executeMove(currentState, "R:L-OO-C3"))
-    // console.log(executeMove(currentState, "B:L-OO-A3"))
-    // console.log(executeMove(currentState, "R:M-OO-A2"))
-    // console.log(executeMove(currentState, "B:L-OO-B2"))
-    // console.log(executeMove(currentState, "R:L-OO-C1"))
-    // console.log(executeMove(currentState, "B:M-OO-C2"))
-    // console.log(executeMove(currentState, "R:L-C3-C2"))
-    // console.log(executeMove(currentState, "B:S-OO-B1"))
-    // console.log(executeMove(currentState, "R:L-C2-B1"))
 
     // for (var gameMove in validMoves) {
     //     var nextState = getNextStateOnMoveExecution(currentState, gameMove);
