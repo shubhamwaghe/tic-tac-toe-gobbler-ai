@@ -1,29 +1,47 @@
 import chalk from 'chalk';
 import 'core-js/features/array/at.js';
-import calculateWinner from './winnerCheckUtil.mjs';
-import { getValidMoves, getNextStateOnMoveExecution } from './moveUtil.mjs';
-import { togglePlayerToMove } from './miscellaneousUtil.mjs';
+import checkResult from './helpers/resultCheckHelper.mjs';
+import { togglePlayerToMove } from './utils/playerUtil.mjs';
+import { getAllValidMoves } from './helpers/validMovesHelper.mjs'
+import { getBoardInitialState, deepCopyBoard, addPieceToTopOnBoardSquare, removeTopPieceFromBoardSquare } from './utils/boardUtil.mjs'
+import { generateGameMove, getParsedGameMove, executeMove } from './utils/moveUtil.mjs'
+import { getPieceFromParsedMove } from './utils/pieceUtil.mjs'
+import { miniMax } from './helpers/miniMaxHelper.mjs'
 
 function runMainSimulation() {
     /* Game State Initialisation */
     var stepNumber = 0;
     var gameHistory = [];
-
-    var initialState = getInitialState();
+    var initialState = getBoardInitialState();
     gameHistory.push(initialState);
-
     /* Assumption : Blue Plays First */
     var playerToMove = "B";
-
-    console.log(calculateWinner(initialState["squares"]));
-
     var currentState = gameHistory[stepNumber];
-    var validMoves = getValidMoves(currentState, playerToMove);
-    for (var gameMove in validMoves) {
-        var nextState = getNextStateOnMoveExecution(currentState, gameMove);
-        console.log(calculateWinner(nextState["squares"]));
-    }
+    var validMoves = getAllValidMoves(currentState, playerToMove);
+    // console.log(gameHistory.at(-1))
+    // console.log(validMoves)
+    // console.log(checkResult(currentState["squares"]))
+    // console.log(deepCopyBoard(currentState))
+    // console.log(currentState)
+    console.log(miniMax(currentState, playerToMove))
+    // console.log(executeMove(currentState, "B:S-OO-A1"))
+    // console.log(executeMove(currentState, "R:L-OO-C3"))
+    // console.log(executeMove(currentState, "B:L-OO-A3"))
+    // console.log(executeMove(currentState, "R:M-OO-A2"))
+    // console.log(executeMove(currentState, "B:L-OO-B2"))
+    // console.log(executeMove(currentState, "R:L-OO-C1"))
+    // console.log(executeMove(currentState, "B:M-OO-C2"))
+    // console.log(executeMove(currentState, "R:L-C3-C2"))
+    // console.log(executeMove(currentState, "B:S-OO-B1"))
+    // console.log(executeMove(currentState, "R:L-C2-B1"))
 
+    // for (var gameMove in validMoves) {
+    //     var nextState = getNextStateOnMoveExecution(currentState, gameMove);
+    //     console.log(calculateWinner(nextState["squares"]));
+    // }
+    // while (checkResult(currentState["squares"]) === 'GAME_NOT_OVER') {
+
+    // }
 }
 
 /* #################################
@@ -31,18 +49,3 @@ function runMainSimulation() {
 console.log(chalk.yellow.bold("TIC-TAC-TOE-GOBBLER : PROGRAM START"));
 runMainSimulation();
 console.log(chalk.yellow.bold("TIC-TAC-TOE-GOBBLER : PROGRAM END"));
-
-/* ################################# */
-
-function getInitialState() {
-    return {
-        "move": "GAME START",
-        "squares": { 
-            "A3" : [], "B3" : [], "C3" : [],
-            "A2" : [], "B2" : [], "C2" : [],
-            "A1" : [], "B1" : [], "C1" : [],
-            "RED_GROUND": ["RS1", "RM1", "RL1", "RS2", "RM2", "RL2"],
-            "BLUE_GROUND": ["BS1", "BM1", "BL1", "BS2", "BM2", "BL2"]
-        }
-    }
-}
