@@ -1,4 +1,15 @@
-export default function checkResult(squaresMap) {
+import crypto from 'crypto-js';
+
+export default function checkResult(squaresMap, gameStateHashMap = {}, gameStatsMap = {}) {
+
+    // var stateHash = crypto.SHA1(squaresMap).toString(crypto.enc.Base64);
+    var stateHash = JSON.stringify(squaresMap);
+    // console.log(JSON.stringify(squaresMap));
+    if (gameStateHashMap[stateHash] === undefined) { gameStateHashMap[stateHash] = 1; }
+
+    if (gameStateHashMap[stateHash] >= 3) { return "D"; }
+
+    gameStateHashMap[stateHash] = gameStateHashMap[stateHash] + 1;
 
     function transformToArrayRepresentation(squaresMap) {
         var squaresList = [];
@@ -41,12 +52,18 @@ export default function checkResult(squaresMap) {
             winnerSet.add(squares[a]);
         }
     }
+
+    var gameResult;
     switch (winnerSet.size) {
         case 2:
-            return "D";
+            gameResult = "D"; break;
         case 1:
-            return winnerSet.values().next().value;
+            gameResult = winnerSet.values().next().value; break;
         default:
-            return "NO_RESULT";
+            gameResult = "NO_RESULT"; break;
     }
+
+    gameStatsMap[gameResult] += 1;
+    return gameResult;
 }
+

@@ -13,24 +13,27 @@ function miniMaxParameters() {
     }
 }
 
-function getNextBestMove(board, player, depth = 0) {
+function getNextBestMove(board, player, { depth, gameStateHashMap, gameStatsMap }) {
     var depthLimit = miniMaxParameters()["depthLimit"];
     if (depth >= depthLimit)
-        return heuristic(board);
+        return heuristic(board, gameStateHashMap, gameStatsMap);
     if (player === 'B')
-        return maximizer(board, depth, player);
+        return maximizer(board, player, { depth: depth, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
     else
-        return minimizer(board, depth, player);
+        return minimizer(board, player, { depth: depth, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
 }
 
-function maximizer(board, depth, player) {
+function maximizer(board, player, { depth, gameStateHashMap, gameStatsMap }) {
     let movesList = getAllValidMoves(board, player);
     let bestMove;
+
+    // console.log(depth, movesList);
+
     var bestMoveScore = Number.NEGATIVE_INFINITY;
     // -INFINITY because first move will always be more
     for (let i = 0; i < movesList.length; i++) {
       let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-      let moveScore = getNextBestMove(movedBoard, 'R', depth + 1);
+      let moveScore = getNextBestMove(movedBoard, 'R', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
       if (moveScore >= bestMoveScore) {
           bestMove = movesList[i];
           bestMoveScore = moveScore;
@@ -43,14 +46,14 @@ function maximizer(board, depth, player) {
 }
 
 
-function minimizer(board, depth, player) {
+function minimizer(board, player, { depth, gameStateHashMap, gameStatsMap }) {
     let movesList = getAllValidMoves(board, player);
     let bestMove;
     var bestMoveScore = Number.POSITIVE_INFINITY;
     // +INFINITY because the first score will always be less
     for (let i = 0; i < movesList.length; i++) {
         let movedBoard = executeMove(deepCopyBoard(board), movesList[i]);
-        let moveScore = getNextBestMove(movedBoard, 'B', depth + 1);
+        let moveScore = getNextBestMove(movedBoard, 'B', { depth: depth + 1, gameStateHashMap: gameStateHashMap, gameStatsMap: gameStatsMap });
         if (moveScore <= bestMoveScore) {
             bestMove = movesList[i];
             bestMoveScore = moveScore;
@@ -62,8 +65,8 @@ function minimizer(board, depth, player) {
     return bestMoveScore;
 }
 
-function heuristic(currentState) {
-    var result = checkResult(currentState["squares"])
+function heuristic(currentState, gameStateHashMap, gameStatsMap) {
+    var result = checkResult(currentState["squares"], gameStateHashMap, gameStatsMap);
     switch (result) {
         case "B":
             return miniMaxParameters()["blueWinPoints"];

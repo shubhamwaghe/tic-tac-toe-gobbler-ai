@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import crypto from 'crypto-js';
 import 'core-js/features/array/at.js';
 import checkResult from './helpers/resultCheckHelper.mjs';
 import { togglePlayerToMove } from './utils/playerUtil.mjs';
@@ -17,7 +18,27 @@ function runMainSimulation() {
     /* Assumption : Blue Plays First */
     var playerToMove = "B";
     var currentState = gameHistory[stepNumber];
-    console.log(getNextBestMove(currentState, playerToMove))
+
+    // Global Variable - Per Run
+    var gameStateHashMap = {};
+    var gameStatsMap = {
+        "B": 0,
+        "R": 0,
+        "D": 0,
+        "NO_RESULT": 0
+    };
+
+
+    console.log(getNextBestMove(currentState, playerToMove, { 
+        depth: 0, 
+        gameStateHashMap: gameStateHashMap,  
+        gameStatsMap: gameStatsMap,  
+    }));
+
+    console.log(chalk.green("Game States Evaluated: ", Object.keys(gameStateHashMap).length));
+    console.log("Game Stats: ", gameStatsMap);
+
+    // console.log("Game State Hashes: ", gameStateHashMap);
 
     // for (var gameMove in validMoves) {
     //     var nextState = getNextStateOnMoveExecution(currentState, gameMove);
