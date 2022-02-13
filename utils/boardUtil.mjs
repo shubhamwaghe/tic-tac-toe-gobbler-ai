@@ -5,11 +5,13 @@ function getBoardInitialState() {
     return {
         "move": "GAME START",
         "squares": {
-            "A3": [], "B3": [], "C3": [],
-            "A2": [], "B2": [], "C2": [],
-            "A1": [], "B1": [], "C1": [], 
-            "RED_GROUND":  ["RS", "RM", "RL", "RS", "RM", "RL"],
-            "BLUE_GROUND": ["BS", "BM", "BL", "BS", "BM", "BL"]
+            "A3": ["BL"], "B3": [""],   "C3": ["BM", "RL"],
+            "A2": ["RM"], "B2": ["RM"], "C2": [],
+            "A1": ["BL"], "B1": [],     "C1": [], 
+            "RED_GROUND":  ["RS", "RL", "RS"],
+            "BLUE_GROUND": ["BS", "BM", "BS"]
+            // "RED_GROUND":  ["RS", "RM", "RL", "RS", "RM", "RL"],
+            // "BLUE_GROUND": ["BS", "BM", "BL", "BS", "BM", "BL"]
         }
     }
 }

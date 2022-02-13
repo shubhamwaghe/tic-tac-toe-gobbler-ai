@@ -5,7 +5,7 @@ import { executeMove } from '../utils/moveUtil.mjs'
 
 function miniMaxParameters() {
     return {
-        "depthLimit": 10,
+        "depthLimit": 3,
         "blueWinPoints": 100,
         "RedWinPoints": -100,
         "drawPoints": 0,
@@ -36,17 +36,14 @@ function maximizer(board, depth, player) {
           bestMoveScore = moveScore;
       }
     }
-    if (depth === 0)
+    if (depth === 0) {
       var bestMoveStore = bestMove; 
-    return bestMoveStore
-
+    }
+    return bestMove
 }
 
 
 function minimizer(board, depth, player) {
-    // console.log("***********")
-    // console.log("minimizer")
-    // console.log("***********")
     let movesList = getAllValidMoves(board, player);
     let bestMove;
     var bestMoveScore = Number.POSITIVE_INFINITY;
@@ -59,12 +56,13 @@ function minimizer(board, depth, player) {
             bestMoveScore = moveScore;
         }
     }
-    if (depth === 0)
+    if (depth === 0) {
         var bestMoveStore = bestMove;
-    return bestMoveStore
+    }
+    return bestMoveScore
 }
 
-function heuristic(currentState, playerToMove) {
+function heuristic(currentState) {
     var result = checkResult(currentState["squares"])
     switch (result) {
         case "B":
