@@ -6,11 +6,16 @@ import {
     getAdjacentBoardSquares,
     getTopPiece
 } from './../utils/boardUtil.mjs'
+import checkResult from './resultCheckHelper.mjs'
 import { generateGameMove, getParsedGameMove } from './../utils/moveUtil.mjs'
 import { getPlayerGround } from './../utils/playerUtil.mjs';
 
 /* Retuns List of Valid Moves - Follows The Game Notation */
 function getAllValidMoves(currentState, playerToMove) {
+    // No valid moves, If game is already over.
+    if (checkResult(currentState["squares"]) != "NO_RESULT") { 
+        return []
+    }
     return getGroundToBoardValidMoves(currentState, playerToMove)
         .concat(getBoardToBoardValidMoves(currentState, playerToMove));
 }

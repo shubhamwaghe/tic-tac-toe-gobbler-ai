@@ -18,6 +18,12 @@ function runMainSimulation() {
     /* Assumption : Blue Plays First */
     var playerToMove = "B";
     var currentState = gameHistory[stepNumber];
+    // Setup Board
+    // currentState = executeMove(initialState, "B:M-OO-B2")
+    // currentState = executeMove(currentState, "R:S-OO-B1")
+    // currentState = executeMove(currentState, "B:M-OO-C3")
+    // currentState = executeMove(currentState, "R:L-OO-A3")
+    // currentState = executeMove(currentState, "B:L-OO-A3")
 
     // Global Variable - Per Run
     var gameStateHashMap = {};
