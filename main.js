@@ -8,6 +8,8 @@ import { getBoardInitialState, deepCopyBoard, addPieceToTopOnBoardSquare, remove
 import { generateGameMove, getParsedGameMove, executeMove } from './utils/moveUtil.mjs'
 import { getPieceFromParsedMove } from './utils/pieceUtil.mjs'
 import { getNextBestMove } from './helpers/miniMaxHelper.mjs'
+import * as boardStates from './sampleBoardStates.js'
+
 
 function runMainSimulation() {
     /* Game State Initialisation */
@@ -24,6 +26,7 @@ function runMainSimulation() {
     // currentState = executeMove(currentState, "B:M-OO-C3")
     // currentState = executeMove(currentState, "R:L-OO-A3")
     // currentState = executeMove(currentState, "B:L-OO-A3")
+    currentState = boardStates.getSampleWinInOnePosition(currentState)
 
     // Global Variable - Per Run
     var gameStateHashMap = {};
