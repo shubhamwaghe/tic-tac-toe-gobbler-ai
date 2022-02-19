@@ -10,7 +10,6 @@ import { getPieceFromParsedMove } from './utils/pieceUtil.mjs'
 import { getNextBestMove } from './helpers/miniMaxHelper.mjs'
 import * as boardStates from './sampleBoardStates.js'
 
-
 function runMainSimulation() {
     /* Game State Initialisation */
     var stepNumber = 0;
@@ -46,9 +45,17 @@ function runMainSimulation() {
 
     console.log(chalk.green("Unique Game States Evaluated: ", Object.keys(gameStateHashMap).length));
     console.log("Game Stats: ", gameStatsMap);
-
-    // console.log("Game State Hashes: ", gameStateHashMap);
-
+    // var fs = require('fs');
+    // fs.writeFile("test.txt", gameStateHashMap, function(err) {
+    // if (err) {
+    //     console.log(err);
+    // }
+    // });
+    // const size = new TextEncoder().encode(JSON.stringify(gameStateHashMap)).length
+    // const kiloBytes = size / 1024;
+    // const megaBytes = kiloBytes / 1024;
+    // console.log(JSON.stringify(gameStateHashMap));
+    // console.log(Object.values(gameStateHashMap).reduce((a, b) => a + b, 0))
     // for (var gameMove in validMoves) {
     //     var nextState = getNextStateOnMoveExecution(currentState, gameMove);
     //     console.log(calculateWinner(nextState["squares"]));
