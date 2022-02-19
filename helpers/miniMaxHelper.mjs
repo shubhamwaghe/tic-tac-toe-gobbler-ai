@@ -5,7 +5,7 @@ import { executeMove } from '../utils/moveUtil.mjs'
 
 function miniMaxParameters() {
     return {
-        "depthLimit": 3,
+        "depthLimit": 5,
         "blueWinPoints": 100,
         "redWinPoints": -100,
         "drawPoints": 0,

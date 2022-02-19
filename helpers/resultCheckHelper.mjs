@@ -5,7 +5,7 @@ export default function checkResult(squaresMap, gameStateHashMap = {}, gameStats
     // var stateHash = crypto.SHA1(squaresMap).toString(crypto.enc.Base64);
     var stateHash = JSON.stringify(squaresMap);
     // console.log(JSON.stringify(squaresMap));
-    if (gameStateHashMap[stateHash] === undefined) { gameStateHashMap[stateHash] = 1; }
+    if (gameStateHashMap[stateHash] === undefined) { gameStateHashMap[stateHash] = 0; }
 
     if (gameStateHashMap[stateHash] >= 3) { return "D"; }
 
