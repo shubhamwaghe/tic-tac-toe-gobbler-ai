@@ -5,11 +5,17 @@ export default function checkResult(squaresMap, gameStateHashMap = {}, gameStats
     // var stateHash = crypto.SHA1(squaresMap).toString(crypto.enc.Base64);
     var stateHash = JSON.stringify(squaresMap);
     // console.log(JSON.stringify(squaresMap));
-    if (gameStateHashMap[stateHash] === undefined) { gameStateHashMap[stateHash] = 0; }
+    if (gameStateHashMap[stateHash] === undefined) { 
+        gameStateHashMap[stateHash] = {}
+        gameStateHashMap[stateHash].gameCount = 0;
+    }
 
-    if (gameStateHashMap[stateHash] >= 3) { return "D"; }
+    if (gameStateHashMap[stateHash].gameCount >= 2) { 
+    
+        return "D"; 
+    }
 
-    gameStateHashMap[stateHash] = gameStateHashMap[stateHash] + 1;
+    gameStateHashMap[stateHash].gameCount = gameStateHashMap[stateHash].gameCount + 1;
 
     function transformToArrayRepresentation(squaresMap) {
         var squaresList = [];
@@ -25,6 +31,19 @@ export default function checkResult(squaresMap, gameStateHashMap = {}, gameStats
         squaresList.push((squaresMap['B1'].at(-1) !== undefined) ? squaresMap['B1'].at(-1).slice(0, 1) : null);
         squaresList.push((squaresMap['C1'].at(-1) !== undefined) ? squaresMap['C1'].at(-1).slice(0, 1) : null);
         return squaresList;
+    }
+
+    function getScoreFromResult(gameResult) {
+        switch (gameResult) {
+            case "B":
+                return 100;
+            case "R":
+                return -100;
+            case "D":
+                return 0;
+            default:
+                return 0;
+        }
     }
 
     /***
@@ -62,7 +81,7 @@ export default function checkResult(squaresMap, gameStateHashMap = {}, gameStats
         default:
             gameResult = "NO_RESULT"; break;
     }
-
+    gameStateHashMap[stateHash].score = getScoreFromResult(gameResult)
     gameStatsMap[gameResult] += 1;
     return gameResult;
 }
